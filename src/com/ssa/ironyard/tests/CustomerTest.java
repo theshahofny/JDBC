@@ -6,6 +6,7 @@ import java.sql.Connection;
 
 import javax.sql.DataSource;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
@@ -23,11 +24,12 @@ public class CustomerTest {
 	
 	CustomerDAO dao;
 	
-	@Test
+	@Before
 	public void setUp() {
 		
 		MysqlDataSource mysqlDataSource = new MysqlDataSource();
 		mysqlDataSource.setURL(URL);
+		this.datasource = mysqlDataSource;
 		this.dao = new CustomerDaoImpl (mysqlDataSource);
 		this.dao.clear();
 	}

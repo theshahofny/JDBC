@@ -7,7 +7,7 @@ public interface CustomerForm {
 
 	default String projection(){
 		
-		return "id, first, last";
+		return "id, FirstName, LastName";
 	}
 	default String table(){
 		return "customers";
@@ -22,10 +22,10 @@ public interface CustomerForm {
 	}
 	
 	default String preparedInsert(){
-		return  "INSERT INTO" + table() + "(firstName, lastName) Values(?, ?)";
+		return  "INSERT INTO" + table() + "(FirstName, LastName) Values(?, ?)";
 	}
 	default String preparedUpdate(){
-		return "UPDATE" + table() + "SET (firstName, lastName) Values(?, ?) Where id = ?";
+		return "UPDATE" + table() + "SET (FirstName, LastName) Values(?, ?) Where id = ?";
 		
 	}
 	

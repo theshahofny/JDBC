@@ -38,23 +38,26 @@ public class CustomerDaoImpl implements CustomerDAO {
 	@Override
 	public Customer insert(Customer customer){
 
+		Customer c = new Customer("Person", "not Created");
 		try {
-			preparedStatement = this.connection.prepareStatement("INSERT into customers(firstName, lastName) Values(?, ?)", 
+			preparedStatement = this.connection.prepareStatement("INSERT into customers (FirstName, LastName) Values(?, ?)", 
 					Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, customer.getFirstName());
 			preparedStatement.setString(2, customer.getLastName());
 
 			preparedStatement.executeUpdate();
+			
 			ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
 			generatedKeys.next();
+			
 			Customer dbCustomer = read(generatedKeys.getInt(1));
 			return dbCustomer;
-
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return customer;
+		return c;
 	}
 
 
@@ -102,7 +105,9 @@ public class CustomerDaoImpl implements CustomerDAO {
 	@Override
 	public int clear() {
 		try {
-		    return preparedStatement.executeUpdate();
+		   setCon();
+		   preparedStatement = connection.prepareStatement("DELETE FROM customers");
+           return preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 		    throw new RuntimeException();
 		}
