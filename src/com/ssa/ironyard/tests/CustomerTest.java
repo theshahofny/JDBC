@@ -6,13 +6,12 @@ import java.sql.Connection;
 
 import javax.sql.DataSource;
 
-import org.junit.After;
 import org.junit.Test;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 import com.ssa.ironyard.main.Customer;
 import com.ssa.ironyard.main.CustomerDAO;
-import com.ssa.ironyard.main.resources.CustomerDaoImpl;
+import com.ssa.ironyard.main.CustomerDaoImpl;
 
 public class CustomerTest {
 
@@ -40,7 +39,6 @@ public class CustomerTest {
 		c1check = dao.insert(c1);
 		assertTrue(c1check.getFirstName().equals(c1.getFirstName()));
 		
-	
 	}
 	
 	public void read(){

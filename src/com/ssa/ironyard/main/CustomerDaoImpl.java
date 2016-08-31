@@ -1,4 +1,4 @@
-package com.ssa.ironyard.main.resources;
+package com.ssa.ironyard.main;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
